@@ -76,26 +76,64 @@ function twenty20_shortcode_init( $atts) {
     $output .= '<img src="'. esc_url( wp_get_attachment_url( $atts['img1'] ) ) .'"'.$img1_alt.' />';
     $output .= '<img src="'. esc_url( wp_get_attachment_url( $atts['img2'] ) ) .'"'.$img2_alt.' />';
     $output .= '</div></div>';
-    $script .= '<script>jQuery( document ).ready(function( $ ) {';
-    if($atts['direction'] == "vertical"){
-      $direc = "[data-orientation='vertical']";
-      $script .= '$(".twentytwenty-container.'.esc_js($t20ID). $direc . '").twentytwenty({default_offset_pct: ' . esc_js($atts['offset'] . $isHover) . $data_vertical . '});';
-    }else{
-      $direc = "[data-orientation!='vertical']";
-      $script .= '$(".twentytwenty-container.'.esc_js($t20ID).$direc.'").twentytwenty({default_offset_pct: '. esc_js($atts['offset'] . $isHover) .'});';
-    }
-    
-    if($atts['before']){
-      $script .= '$(".' . twenty20_zb_sanitize_xss_offset( esc_js($t20ID) ) . ' .twentytwenty-before-label").html("'. twenty20_zb_sanitize_xss_offset(esc_js($atts['before'])) .'");';
-    }else{
-      $script .= '$(".' . twenty20_zb_sanitize_xss_offset( esc_js($t20ID) ) . ' .twentytwenty-overlay").hide();';
-    }
-    if($atts['after']){
-      $script .= '$(".' . twenty20_zb_sanitize_xss_offset( esc_js($t20ID) ) . ' .twentytwenty-after-label").html("'. twenty20_zb_sanitize_xss_offset(esc_js($atts['after'])) .'");';
-    }else{
-      $script .= '$(".' . twenty20_zb_sanitize_xss_offset( esc_js($t20ID) ) . ' .twentytwenty-overlay").hide();';
-    }
-    $script .= '});</script>';
+    $script .= '<script>jQuery(function($) {
+        // Wait for images to load before initializing
+        var $container = $(".twentytwenty-container.' . esc_js($t20ID) . '");
+        var $images = $container.find("img");
+        var loaded = 0;
+        
+        function initTwenty20() {
+            if($container.data("twenty20-init")) return;
+            
+            if($container.attr("data-orientation") === "vertical") {
+                $container.twentytwenty({
+                    default_offset_pct: ' . esc_js($atts['offset']) . $isHover . ',
+                    orientation: "vertical"
+                });
+            } else {
+                $container.twentytwenty({
+                    default_offset_pct: ' . esc_js($atts['offset']) . $isHover . '
+                });
+            }
+            $container.data("twenty20-init", true);
+        }
+
+        // Check if images are already cached
+        if($images.get(0).complete && $images.get(1).complete) {
+            initTwenty20();
+        } else {
+            // Wait for images to load
+            $images.on("load", function() {
+                loaded++;
+                if(loaded === $images.length) {
+                    initTwenty20();
+                }
+            });
+            
+            // Fallback if images fail to load
+            setTimeout(function() {
+                if(!$container.data("twenty20-init")) {
+                    initTwenty20();
+                }
+            }, 2000);
+        }
+        
+        // Handle before/after labels
+        ';
+        
+        if($atts['before']){
+            $script .= '$(".' . twenty20_zb_sanitize_xss_offset(esc_js($t20ID)) . ' .twentytwenty-before-label").html("' . twenty20_zb_sanitize_xss_offset(esc_js($atts['before'])) . '");';
+        } else {
+            $script .= '$(".' . twenty20_zb_sanitize_xss_offset(esc_js($t20ID)) . ' .twentytwenty-overlay").hide();';
+        }
+        
+        if($atts['after']){
+            $script .= '$(".' . twenty20_zb_sanitize_xss_offset(esc_js($t20ID)) . ' .twentytwenty-after-label").html("' . twenty20_zb_sanitize_xss_offset(esc_js($atts['after'])) . '");';
+        } else {
+            $script .= '$(".' . twenty20_zb_sanitize_xss_offset(esc_js($t20ID)) . ' .twentytwenty-overlay").hide();';
+        }
+        
+        $script .= '});</script>';
     
   }else{
     $output = '<div class="twenty20" style="color: red;">Twenty20 need two images.</div>';

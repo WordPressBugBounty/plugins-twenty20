@@ -5,11 +5,32 @@ function twenty20_zb_enqueue_script() {
   // Twenty20 Style
   wp_enqueue_style( 'twenty20', ZB_T20_URL . '/assets/css/twenty20.css', array(), ZB_T20_VER );
 
-  // Twenty20 Script
-  wp_enqueue_script( 'twenty20', ZB_T20_URL . '/assets/js/jquery.twenty20.js', array( 'jquery' ), ZB_T20_VER, true );
-
-  // Twenty20 Event Move Script
+  // Event Move Script must be loaded before Twenty20
   wp_enqueue_script( 'twenty20-eventmove', ZB_T20_URL . '/assets/js/jquery.event.move.js', array( 'jquery' ), ZB_T20_VER, true );
+
+  // Twenty20 Script
+  wp_enqueue_script( 'twenty20', ZB_T20_URL . '/assets/js/jquery.twenty20.js', array( 'jquery', 'twenty20-eventmove' ), ZB_T20_VER, true );
+
+  // Add inline script to handle image loading globally
+  wp_add_inline_script('twenty20', '
+    jQuery(function($) {
+      // Re-init any uninitialized containers
+      function checkUninitialized() {
+        $(".twentytwenty-container:not([data-twenty20-init])").each(function() {
+          var $container = $(this);
+          if($container.find("img").length === 2) {
+            $container.trigger("twenty20-init");
+          }
+        });
+      }
+      
+      // Check periodically for the first few seconds
+      var checkInterval = setInterval(checkUninitialized, 500);
+      setTimeout(function() {
+        clearInterval(checkInterval);
+      }, 5000);
+    });
+  ');
 
   if ( class_exists( 'Elementor\Plugin' ) ) {
     // Ensure the scripts and styles load in Elementor editor as well
