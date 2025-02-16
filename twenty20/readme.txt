@@ -1,32 +1,75 @@
 === Twenty20 Image Before-After ===
 Contributors: zayedbaloch, hammal
 Donate link: https://www.paypal.me/zayedbaloch
-Tags: images, before and after slider, before after slider, ux builder element
+Tags: before after slider, image comparison, elementor, visual composer, image slider
 Requires at least: 5.5
-Tested up to: 6.7
+Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 1.7.6
+Stable tag: 2.0.0
 License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easily highlight differences between two images with the Twenty20 plugin.
+Professional before & after image comparison slider for WordPress. Create engaging visual comparisons with an intuitive drag & drop interface.
 
 == Description ==
 
-The Twenty20 plugin was created to allow users to swipe between two images, showcasing "before" and "after" comparisons. The plugin is designed to be fully responsive and user-friendly.
+Twenty20 is a professional-grade image comparison tool that helps you showcase transformations in a highly engaging way. Perfect for:
 
-**Features**
+* Photography portfolios
+* Real estate before/after
+* Renovation projects
+* Design makeovers
+* Product comparisons
+* Restoration work
+* Medical procedures
+* And much more!
 
-* Fully responsive across all devices.
-* No coding skills required.
-* Clean and intuitive user interface.
-* Add before-and-after comparisons to widgets.
-* Compatible with popular page builders.
-* Utilizes WP Image alt as image alt and title attributes.
+= Key Features =
 
-**Supported Page Builders**
+* Responsive design - works perfectly on all devices
+* Horizontal and vertical sliding options
+* Customizable slider position and orientation
+* Custom "before" and "after" labels
+* Adjustable image widths and alignments
+* Mouse hover sliding effect
+* Touch-enabled for mobile devices
+* Multiple sliders per page
+* Widget support for sidebars
 
-* Flatsome UX Builder by UXThemes.
+= Page Builder Support =
 
+* Elementor
+* WPBakery Page Builder (Visual Composer)
+* Flatsome UX Builder
+* Classic Editor
+* Gutenberg Compatible
+
+= Perfect For =
+
+* Photography before/after edits
+* Home renovation comparisons
+* Web design makeovers
+* Product transformations
+* Restoration projects
+* Beauty transformations
+* Real estate renovations
+
+== Installation ==
+
+1. Upload the `twenty20` folder to your `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Use the shortcode `[twenty20]` in your posts/pages or use the widget
+
+= Quick Start Guide =
+
+1. Click the "Add Twenty20" button in your editor
+2. Select your before and after images
+3. Customize settings as needed
+4. Insert and publish
+
+== Usage ==
+
+= Shortcode Example =
 
 **Quick Example**
 
@@ -43,21 +86,6 @@ The Twenty20 plugin was created to allow users to swipe between two images, show
 * `before` - text for the "before" label.
 * `after` - text for the "after" label.
 * `hover` - `true` or `false`.
-
-
-
-== Installation ==
-
-1. Unzip the download package
-2. Upload `twenty20` to the `/wp-content/plugins/` directory
-3. Activate the plugin through the 'Plugins' menu in WordPress
-
-= Manual Plugin Installation =
-1. Download Twenty20 Plugin to your desktop.
-2. If downloaded as a zip archive, extract the Plugin folder to your desktop.
-3. With your FTP program, upload the Plugin folder to the `wp-content/plugins` folder in your WordPress directory online.
-4. Go to Plugins screen and find Twenty20 Plugin in the list.
-5. Click Activate Plugin to activate it.
 
 == Frequently Asked Questions ==
 
@@ -79,10 +107,10 @@ Twenty20 works by stacking two images on top of each other. As the slider moves 
 * `hover` - `true` or `false`.
 
 = How to add before-after slider? =
-Check the demo [Video](https://www.youtube.com/watch?v=wOu-lEb9Gh0 "YouTube") demo.
+Check the demo [Video](# "YouTube") demo.
 
 = How do I add a widget? =
-Watch the [video demo](https://www.youtube.com/watch?v=wOu-lEb9Gh0) on YouTube.
+Watch the [video demo](#) on YouTube.
 
 = Can I use more than one slider in a single post or page? =
 Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
@@ -103,8 +131,23 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 
 == Changelog ==
 
+= 2.0.0 =
+* Complete codebase modernization
+* New: Enhanced image loading system
+* New: Improved mobile touch response
+* New: Better compatibility with page builders
+* New: Modernized admin interface
+* Fixed: Widget image selection issues
+* Fixed: Image replacement bug in widgets
+* Fixed: Admin CSS loading in editor
+* Fixed: Multiple slider initialization issues
+* Improved: Script loading reliability
+* Improved: Overall performance optimization
+
 = 1.7.6 =
-* Fixed Twenty20 slider initialization timing by adding robust image load detection and fallback mechanisms in both shortcode and global script handlers.
+* Fixed Elementor Widget
+* Improved mobile responsiveness
+* Performance optimizations
 
 = 1.7.5 =
 * Fixed Elementor Widget
@@ -140,7 +183,7 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 * Fix: WP 5.6 Uncaught TypeError (Thanks to @negru13)
 
 = 1.5.6 =
-* Fix: Jetpack’s lazy load images issue
+* Fix: Jetpack's lazy load images issue
 
 = 1.5.5 =
 * Fix: Widget mouse over.
@@ -178,3 +221,8 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 
 = 1.0 =
 * First Release
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+Major update with significant improvements in functionality, performance, and user experience. Includes important bug fixes and enhanced compatibility with modern WordPress features.

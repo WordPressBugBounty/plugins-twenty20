@@ -29,12 +29,13 @@ class twenty20_slider_widget extends WP_Widget {
 
   // Front-end View
   public function widget( $args, $instance ) {
-    echo esc_attr( $args['before_widget'] );
-    if ( ! empty( $instance['title'] ) ) {
-      echo esc_attr( $args['before_title'] ) . esc_html( apply_filters( 'widget_title', $instance['title'] ) ) . esc_attr( $args['after_title'] );
+    echo $args['before_widget'];
+    if (!empty($instance['title'])) {
+        echo $args['before_title'] . esc_html(apply_filters('widget_title', $instance['title'])) . $args['after_title'];
     }
     ?>
     <div class="mac-wrap">
+      
       <?php
         $t20ID = $args['widget_id'];
         $isVertical = '';
@@ -80,7 +81,7 @@ class twenty20_slider_widget extends WP_Widget {
       </div>
       <?php endif ?>
     </div>
-  <?php echo esc_attr( $args['after_widget'] ); }
+  <?php echo $args['after_widget']; }
 
   // Widget Layout
   public function form( $instance ) {

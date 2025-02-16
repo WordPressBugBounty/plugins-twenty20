@@ -8,44 +8,45 @@ function twenty20_shortcode_integrateWithVC() {
     "name"      =>  __( "Twenty20", 'zb_twenty20' ),
     "base"      =>  "twenty20",
     "icon"      =>  "icon-twenty20",
-    "category"  =>  __( "Content", 'zb_twenty20'),
+    "category"  =>  __( "Media", 'zb_twenty20'),
+    "description" => esc_html__( 'Create interactive before & after image comparison sliders', 'zb_twenty20' ),
     "params"    =>  array(
       array(
         'type'        =>  'attach_image',
         'heading'     =>  __( 'Before Image', 'zb_twenty20' ),
         'param_name'  =>  'img1',
-        "description" =>  __("Select Before Image.", 'zb_twenty20'),
+        "description" =>  esc_html__("Choose the 'before' image to display on the left/top side of the slider", 'zb_twenty20'),
       ),
       array(
         'type'        =>  'attach_image',
         'heading'     =>  __( 'After Image', 'zb_twenty20' ),
         'param_name'  =>  'img2',
-        "description" =>  __("Select After Image.", 'zb_twenty20'),
+        "description" =>  esc_html__("Choose the 'after' image to display on the right/bottom side of the slider", 'zb_twenty20'),
       ),
       array(
         'type'        =>  'textfield',
         'heading'     =>  __( 'Before Text', 'zb_twenty20' ),
         'param_name'  =>  'before',
-        "description" =>  __("Twenty20 before text.", 'zb_twenty20'),
+        "description" =>  esc_html__("Add a caption or label for the 'before' image (optional)", 'zb_twenty20'),
       ),
       array(
         'type'        =>  'textfield',
         'heading'     =>  __( 'After Text', 'zb_twenty20' ),
         'param_name'  =>  'after',
-        "description" =>  __("Twenty20 after text.", 'zb_twenty20'),
+        "description" =>  esc_html__("Add a caption or label for the 'after' image (optional)", 'zb_twenty20'),
       ),
       array(
         'type'        =>  'textfield',
         'heading'     =>  __( 'Width', 'zb_twenty20' ),
         'param_name'  =>  'width',
-        "description" =>  __("Twenty20 container width.", 'zb_twenty20'),
+        "description" =>  esc_html__("Set slider width in pixels or percentage (e.g., '500px' or '100%'). Default: 100%", 'zb_twenty20'),
       ),
 
       array(
         'type'        =>  'dropdown',
         'heading'     =>  __( 'Direction', 'zb_twenty20' ),
         'param_name'  =>  'direction',
-        "description" =>  __("Select twenty20 slider direction", 'zb_twenty20'),
+        "description" =>  esc_html__("Choose slider movement direction - horizontal (left/right) or vertical (up/down)", 'zb_twenty20'),
         "value"       =>  array(
           'Horizontal'  =>  'default',
           'Vertical'    =>  'vertical'
@@ -55,7 +56,7 @@ function twenty20_shortcode_integrateWithVC() {
         'type'          =>  'dropdown',
         'heading'       =>  __( 'Offset', 'zb_twenty20' ),
         'param_name'    =>  'offset',
-        "description"   =>  __("Slider offset", 'zb_twenty20'),
+        "description"   =>  esc_html__("Set the initial position of the slider handle (0.1 to 1.0). Default: 0.5 (center)", 'zb_twenty20'),
         "value"         =>  array(
           '0.5' =>  '0.5',
           '0.1' =>  '0.1',
@@ -74,7 +75,7 @@ function twenty20_shortcode_integrateWithVC() {
         'type'        =>  'dropdown',
         'heading'     =>  __( 'Mouseover', 'zb_twenty20' ),
         'param_name'  =>  'hover',
-        "description" =>  __("Move slider on mouse hover?", 'zb_twenty20'),
+        "description" =>  esc_html__("Enable automatic slider movement when mouse hovers over the image", 'zb_twenty20'),
         "value"       =>  array(
           'No'  =>  'false',
           'Yes'    =>  'true'
@@ -84,7 +85,7 @@ function twenty20_shortcode_integrateWithVC() {
         'type'          =>  'dropdown',
         'heading'       =>  __( 'Alignment', 'zb_twenty20' ),
         'param_name'    =>  'align',
-        "description"   =>  __("Set alignment", 'zb_twenty20'),
+        "description"   =>  esc_html__("Choose how to align the slider within its container (left, right, or none)", 'zb_twenty20'),
         "value"         =>  array(
           'None'  =>  'none',
           'Right' =>  'right',

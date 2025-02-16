@@ -2,8 +2,8 @@
 /*
   Plugin Name: Twenty20 Image Before-After
   Plugin URI: https://wordpress.org/plugins/twenty20/
-  Description: Need to highlight the differences between two images? Makes it easy with Twenty20 plugin.
-  Version: 1.7.6
+  Description: Professional before & after image comparison slider with touch support. Create engaging visual comparisons for photography, design, and renovation projects. Fully compatible with Elementor, WPBakery & more.
+  Version: 2.0.0
   Author: Zayed Baloch
   Author URI: https://www.zayedbaloch.com/
   License: GPL2
@@ -11,7 +11,7 @@
 
 defined('ABSPATH') or die("No script kiddies please!");
 
-define('ZB_T20_VER', '1.7.5');
+define('ZB_T20_VER', '2.0.0');
 define('ZB_T20_URL', plugins_url('', __FILE__));
 define('ZB_T20_DOMAIN', 'zb_twenty20');
 
