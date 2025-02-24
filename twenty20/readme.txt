@@ -3,9 +3,9 @@ Contributors: zayedbaloch, hammal
 Donate link: https://www.paypal.me/zayedbaloch
 Tags: before after slider, image comparison, elementor, visual composer, image slider
 Requires at least: 5.5
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,10 @@ Twenty20 is a professional-grade image comparison tool that helps you showcase t
 * Restoration work
 * Medical procedures
 * And much more!
+
+= Video Tutorial =
+
+https://www.youtube.com/watch?v=1cQ9rhL-t70k
 
 = Key Features =
 
@@ -108,7 +112,7 @@ Twenty20 works by stacking two images on top of each other. As the slider moves 
 * `hover` - `true` or `false`.
 
 = How to add before-after slider? =
-Check the demo [Video](# "YouTube") demo.
+Check the demo [Video](https://www.youtube.com/watch?v=1cQ9rhL-t70k "YouTube") demo.
 
 = How do I add a widget? =
 Watch the [video demo](#) on YouTube.
@@ -132,8 +136,10 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 
 == Changelog ==
 
-= 2.0.1 =
+= 2.0.2 =
 * Fixed: Missing alt attributes in image comparison
+
+= 2.0.1 =
 * Improved: Accessibility compliance
 * Improved: SEO optimization for image comparisons
 
