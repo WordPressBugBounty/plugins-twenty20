@@ -5,7 +5,7 @@ Tags: before after slider, image comparison, elementor, visual composer, image s
 Requires at least: 5.5
 Tested up to: 6.6
 Requires PHP: 5.6
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,8 @@ Twenty20 is a professional-grade image comparison tool that helps you showcase t
 * Touch-enabled for mobile devices
 * Multiple sliders per page
 * Widget support for sidebars
+* SEO-friendly with proper alt tag support
+* Accessibility compliant image comparisons
 
 = Page Builder Support =
 
@@ -42,7 +44,6 @@ Twenty20 is a professional-grade image comparison tool that helps you showcase t
 * WPBakery Page Builder (Visual Composer)
 * Flatsome UX Builder
 * Classic Editor
-* Gutenberg Compatible
 
 = Perfect For =
 
@@ -130,6 +131,12 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 11. UX Builder element.
 
 == Changelog ==
+
+= 2.0.1 =
+* Fixed: Missing alt attributes in image comparison
+* Improved: Accessibility compliance
+* Improved: SEO optimization for image comparisons
+
 
 = 2.0.0 =
 * Complete codebase modernization
@@ -223,6 +230,9 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 * First Release
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+Important accessibility update: Adds proper alt tag support and improves SEO optimization. Recommended update for all users.
 
 = 2.0.0 =
 Major update with significant improvements in functionality, performance, and user experience. Includes important bug fixes and enhanced compatibility with modern WordPress features.

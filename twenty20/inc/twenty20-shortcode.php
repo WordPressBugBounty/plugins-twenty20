@@ -63,18 +63,18 @@ function twenty20_shortcode_init( $atts) {
 
   $script = "";
   if(!empty($atts['img1']) && !empty($atts['img2'])){
+    // Get alt text from media library
     $img1_alt = get_post_meta($atts['img1'], '_wp_attachment_image_alt', true);
     $img2_alt = get_post_meta($atts['img2'], '_wp_attachment_image_alt', true);
 
-
-   $img1_alt_attr = $img1_alt ? ' alt="' . esc_attr($img1_alt) . '" title="' . esc_attr($img1_alt) . '"' : '';
-      $img2_alt_attr = $img2_alt ? ' alt="' . esc_attr($img2_alt) . '" title="' . esc_attr($img2_alt) . '"' : '';
-
+    // If no alt text is set, use default values
+    $img1_alt = !empty($img1_alt) ? $img1_alt : 'Before image';
+    $img2_alt = !empty($img2_alt) ? $img2_alt : 'After image';
 
     $output = '<div id="'.esc_attr($t20ID).'" class="twenty20" style="'. esc_attr($atts['width'] . $isLeft . $isRight) . '">';
     $output .= '<div class="twentytwenty-container '. esc_attr( $t20ID . ' ' . $yesHover ) .'"' . esc_attr( $isVertical ) . '>';
-    $output .= '<img src="'. esc_url( wp_get_attachment_url( $atts['img1'] ) ) .'"'.$img1_alt.' />';
-    $output .= '<img src="'. esc_url( wp_get_attachment_url( $atts['img2'] ) ) .'"'.$img2_alt.' />';
+    $output .= '<img src="'. esc_url( wp_get_attachment_url( $atts['img1'] ) ) .'" alt="'. esc_attr($img1_alt) .'" />';
+    $output .= '<img src="'. esc_url( wp_get_attachment_url( $atts['img2'] ) ) .'" alt="'. esc_attr($img2_alt) .'" />';
     $output .= '</div></div>';
     $script .= '<script>jQuery(function($) {
         // Wait for images to load before initializing

@@ -132,8 +132,26 @@ class Elementor_Twenty20_Widget extends \Elementor\Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
+        
+        // Get image details including alt text
+        $img1_data = wp_get_attachment_image_src($settings['img1']['id'], 'full');
+        $img2_data = wp_get_attachment_image_src($settings['img2']['id'], 'full');
+        
+        $img1_alt = get_post_meta($settings['img1']['id'], '_wp_attachment_image_alt', true);
+        $img2_alt = get_post_meta($settings['img2']['id'], '_wp_attachment_image_alt', true);
 
-        echo do_shortcode('[twenty20 img1="' . esc_attr( $settings['img1']['id'] ) . '" img2="' . esc_attr( $settings['img2']['id']) . '" offset="' . esc_attr( $settings['offset']['size'] ) . '" direction="' . esc_attr( $settings['direction'] ) . '" before="' . esc_attr( $settings['before'] ) . '" after="' . esc_attr( $settings['after'] ) . '" hover="' . esc_attr( $settings['hover'] ) . '"]');
+        // Use default alt text if none is set
+        $img1_alt = !empty($img1_alt) ? $img1_alt : 'Before image';
+        $img2_alt = !empty($img2_alt) ? $img2_alt : 'After image';
+
+        echo do_shortcode('[twenty20 img1="' . $settings['img1']['id'] . 
+                          '" img2="' . $settings['img2']['id'] . 
+                          '" direction="' . $settings['direction'] . 
+                          '" offset="' . $settings['offset'] . 
+                          '" align="' . $settings['align'] . 
+                          '" before="' . $settings['before'] . 
+                          '" after="' . $settings['after'] . 
+                          '" hover="' . $settings['hover'] . '"]');
     }
 
     protected function _content_template() {

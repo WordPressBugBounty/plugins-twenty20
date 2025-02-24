@@ -3,7 +3,7 @@
   Plugin Name: Twenty20 Image Before-After
   Plugin URI: https://wordpress.org/plugins/twenty20/
   Description: Professional before & after image comparison slider with touch support. Create engaging visual comparisons for photography, design, and renovation projects. Fully compatible with Elementor, WPBakery & more.
-  Version: 2.0.0
+  Version: 2.0.1
   Author: Zayed Baloch
   Author URI: https://www.zayedbaloch.com/
   License: GPL2
@@ -11,7 +11,7 @@
 
 defined('ABSPATH') or die("No script kiddies please!");
 
-define('ZB_T20_VER', '2.0.0');
+define('ZB_T20_VER', '2.0.1');
 define('ZB_T20_URL', plugins_url('', __FILE__));
 define('ZB_T20_DOMAIN', 'zb_twenty20');
 
@@ -53,10 +53,7 @@ function twenty20_ux_builder_template($path) {
 }
 
 function register_hello_world_widget( $widgets_manager ) {
-
   require_once( __DIR__ . '/inc/elementor-class.php' );
-
   $widgets_manager->register( new \Elementor_Twenty20_Widget() );
-
 }
 add_action( 'elementor/widgets/register', 'register_hello_world_widget' );
