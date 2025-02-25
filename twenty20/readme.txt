@@ -2,10 +2,10 @@
 Contributors: zayedbaloch, hammal
 Donate link: https://www.paypal.me/zayedbaloch
 Tags: before after slider, image comparison, elementor, visual composer, image slider
-Requires at least: 5.5
+Requires at least: 5.9
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,7 @@ Twenty20 is a professional-grade image comparison tool that helps you showcase t
 
 = Video Tutorial =
 
-https://www.youtube.com/watch?v=1cQ9rhL-t70k
+https://www.youtube.com/watch?v=1cQ9rhL-t70
 
 = Key Features =
 
@@ -112,7 +112,7 @@ Twenty20 works by stacking two images on top of each other. As the slider moves 
 * `hover` - `true` or `false`.
 
 = How to add before-after slider? =
-Check the demo [Video](https://www.youtube.com/watch?v=1cQ9rhL-t70k "YouTube") demo.
+Check the demo [Video](https://www.youtube.com/watch?v=1cQ9rhL-t70 "YouTube") demo.
 
 = How do I add a widget? =
 Watch the [video demo](#) on YouTube.
@@ -135,6 +135,9 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 11. UX Builder element.
 
 == Changelog ==
+
+= 2.0.3 =
+* Minor fixes
 
 = 2.0.2 =
 * Fixed: Missing alt attributes in image comparison
@@ -237,8 +240,26 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 
 == Upgrade Notice ==
 
+= 2.0.3 =
+* Minor fixes
+
+= 2.0.2 =
+* Fixed: Missing alt attributes in image comparison
+
 = 2.0.1 =
-Important accessibility update: Adds proper alt tag support and improves SEO optimization. Recommended update for all users.
+* Improved: Accessibility compliance
+* Improved: SEO optimization for image comparisons
+
 
 = 2.0.0 =
-Major update with significant improvements in functionality, performance, and user experience. Includes important bug fixes and enhanced compatibility with modern WordPress features.
+* Complete codebase modernization
+* New: Enhanced image loading system
+* New: Improved mobile touch response
+* New: Better compatibility with page builders
+* New: Modernized admin interface
+* Fixed: Widget image selection issues
+* Fixed: Image replacement bug in widgets
+* Fixed: Admin CSS loading in editor
+* Fixed: Multiple slider initialization issues
+* Improved: Script loading reliability
+* Improved: Overall performance optimization
