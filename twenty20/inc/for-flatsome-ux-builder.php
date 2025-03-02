@@ -4,6 +4,7 @@ add_action('ux_builder_setup', 'zb_twenty20_ux_builder_element');
 function zb_twenty20_ux_builder_element(){
   add_ux_builder_shortcode( 'twenty20', array(
     'name' => __( 'Twenty20', 'zb_twenty20' ),
+    'category' => __('Ultimate UX Elements', 'ultimate-ux-elements'),
     'thumbnail' =>  twenty20_ux_builder_thumbnails( 'twenty20' ),
     'template' => twenty20_ux_builder_template( 'twenty20.html' ),
     'allow_in' => array('text_box'),

@@ -5,7 +5,7 @@ Tags: before after slider, image comparison, elementor, visual composer, image s
 Requires at least: 5.9
 Tested up to: 6.7
 Requires PHP: 5.6
-Stable tag: 2.0.3
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -27,6 +27,10 @@ Twenty20 is a professional-grade image comparison tool that helps you showcase t
 = Video Tutorial =
 
 https://www.youtube.com/watch?v=1cQ9rhL-t70
+
+= Live Demo =
+
+Check the [Live Demo](https://zayedbaloch.com/twenty20-image-before-after-wordpress-plugin/ "Twenty20 Live demo").
 
 = Key Features =
 
@@ -115,7 +119,7 @@ Twenty20 works by stacking two images on top of each other. As the slider moves 
 Check the demo [Video](https://www.youtube.com/watch?v=1cQ9rhL-t70 "YouTube") demo.
 
 = How do I add a widget? =
-Watch the [video demo](#) on YouTube.
+Watch the [video demo](https://www.youtube.com/watch?v=1cQ9rhL-t70 "YouTube") on YouTube.
 
 = Can I use more than one slider in a single post or page? =
 Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
@@ -135,6 +139,9 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 11. UX Builder element.
 
 == Changelog ==
+
+= 2.0.4 =
+* Minor fixes
 
 = 2.0.3 =
 * Minor fixes
@@ -239,6 +246,9 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 * First Release
 
 == Upgrade Notice ==
+
+= 2.0.4 =
+* Minor fixes
 
 = 2.0.3 =
 * Minor fixes
