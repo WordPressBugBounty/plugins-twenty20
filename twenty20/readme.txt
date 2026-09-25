@@ -5,7 +5,7 @@ Tags: before after slider, image comparison, elementor, visual composer, image s
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 2.0.5
+Stable tag: 2.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -140,6 +140,15 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 
 == Changelog ==
 
+= 2.0.6 =
+* Security: fix CVE-2022-4580 Contributor+ Stored XSS — validate/sanitize shortcode attributes (offset clamped float, whitelisted direction/align/hover, absint image IDs, text-only before/after via .text() and data attributes, no user input in inline JS)
+* Security: harden widget (sanitized update(), escaped output, fixed data-orientation markup) and Elementor widget (fixed offset Array bug, escaped render)
+* Fixed: widget admin scripts not loading (wrong hook names), PHP 8 undefined-index notices, Elementor editor script guards, media-button capability checks
+* No shortcode changes required — all existing attributes and defaults preserved
+
+= 2.0.5 =
+* WP 7.1 Tested
+
 = 2.0.4 =
 * Minor fixes
 
@@ -246,6 +255,9 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 * First Release
 
 == Upgrade Notice ==
+
+= 2.0.6 =
+* Security fix for CVE-2022-4580 (Stored XSS). Please update. No shortcode changes required.
 
 = 2.0.4 =
 * Minor fixes

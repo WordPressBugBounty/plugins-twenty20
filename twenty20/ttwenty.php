@@ -2,22 +2,22 @@
 /*
   Plugin Name: Twenty20 Image Before-After
   Plugin URI: https://wordpress.org/plugins/twenty20/
-  Description: Professional before & after image comparison slider with touch support. Create engaging visual comparisons for photography, design, and renovation projects. Fully compatible with Elementor, WPBakery & more.
-  Version: 2.0.5
-  Author: Zayed Baloch
-  Author URI: https://www.zayedbaloch.com/
-  License: GPL2
+   Description: Professional before & after image comparison slider with touch support. Create engaging visual comparisons for photography, design, and renovation projects. Fully compatible with Elementor, WPBakery & more.
+   Version: 2.0.6
+   Author: Zayed Baloch
+   Author URI: https://www.zayedbaloch.com/
+   License: GPL2
 */
 
 defined('ABSPATH') or die("No script kiddies please!");
 
-define('ZB_T20_VER', '2.0.4');
+define('ZB_T20_VER', '2.0.6');
 define('ZB_T20_URL', plugins_url('', __FILE__));
 define('ZB_T20_DOMAIN', 'zb_twenty20');
 
 // INITIALIZE PLUGIN
 function twenty20_dir_init() {
-  load_plugin_textdomain(ZB_T20_DOMAIN);
+  load_plugin_textdomain( ZB_T20_DOMAIN, false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action('init', 'twenty20_dir_init');
 
@@ -28,17 +28,17 @@ $files_to_include = [
 ];
 
 foreach ($files_to_include as $file) {
-  include_once($file);
+  include_once( plugin_dir_path( __FILE__ ) . $file );
 }
 
 
 if (class_exists('WPBakeryShortCode')) {
-  require_once('inc/twenty20-shortcode-vc.php');
+  require_once( plugin_dir_path( __FILE__ ) . 'inc/twenty20-shortcode-vc.php' );
 }
 
 // Check if the function add_ux_builder_shortcode exists
 if (!function_exists('add_ux_builder_shortcode')) {
-  include_once('inc/for-flatsome-ux-builder.php');
+  include_once( plugin_dir_path( __FILE__ ) . 'inc/for-flatsome-ux-builder.php' );
 } 
 
 

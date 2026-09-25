@@ -30,10 +30,10 @@ class Elementor_Twenty20_Widget extends \Elementor\Widget_Base {
         return [ 'twenty20-elementor-script' ]; // Handle of the JS file
     }
 
-    protected function _register_controls() {
+    protected function register_controls() {
 
-    	 wp_enqueue_style( 'twenty20-elementor-style', ZB_T20_URL . '/assets/css/twenty20.css' );
-        wp_enqueue_script( 'twenty20-elementor-script', ZB_T20_URL .'/assets/js/jquery.twenty20.js', [ 'jquery' ], false, true );
+    	 wp_enqueue_style( 'twenty20-elementor-style', ZB_T20_URL . '/assets/css/twenty20.css', array(), ZB_T20_VER );
+        wp_enqueue_script( 'twenty20-elementor-script', ZB_T20_URL .'/assets/js/jquery.twenty20.js', [ 'jquery' ], ZB_T20_VER, true );
         
 
         $this->start_controls_section(
@@ -130,28 +130,39 @@ class Elementor_Twenty20_Widget extends \Elementor\Widget_Base {
         $this->end_controls_section();
     }
 
+    protected function _register_controls() {
+        // Backward compatibility for old Elementor versions.
+        if ( method_exists( $this, 'register_controls' ) ) {
+            $this->register_controls();
+        }
+    }
+
     protected function render() {
         $settings = $this->get_settings_for_display();
-        
-        // Get image details including alt text
-        $img1_data = wp_get_attachment_image_src($settings['img1']['id'], 'full');
-        $img2_data = wp_get_attachment_image_src($settings['img2']['id'], 'full');
-        
-        $img1_alt = get_post_meta($settings['img1']['id'], '_wp_attachment_image_alt', true);
-        $img2_alt = get_post_meta($settings['img2']['id'], '_wp_attachment_image_alt', true);
 
-        // Use default alt text if none is set
-        $img1_alt = !empty($img1_alt) ? $img1_alt : 'Before image';
-        $img2_alt = !empty($img2_alt) ? $img2_alt : 'After image';
+        // Sanitize everything before passing to the shortcode (shortcode re-validates as well).
+        $img1_id = isset( $settings['img1']['id'] ) ? absint( $settings['img1']['id'] ) : 0;
+        $img2_id = isset( $settings['img2']['id'] ) ? absint( $settings['img2']['id'] ) : 0;
 
-        echo do_shortcode('[twenty20 img1="' . $settings['img1']['id'] . 
-                          '" img2="' . $settings['img2']['id'] . 
-                          '" direction="' . $settings['direction'] . 
-                          '" offset="' . $settings['offset'] . 
-                          '" align="' . $settings['align'] . 
-                          '" before="' . $settings['before'] . 
-                          '" after="' . $settings['after'] . 
-                          '" hover="' . $settings['hover'] . '"]');
+        $offset_raw = isset( $settings['offset']['size'] ) ? $settings['offset']['size'] : ( isset( $settings['offset'] ) && is_numeric( $settings['offset'] ) ? $settings['offset'] : 0.5 );
+        $offset = is_numeric( $offset_raw ) ? (float) $offset_raw : 0.5;
+        $offset = max( 0.1, min( 1.0, $offset ) );
+
+        $direction = ( isset( $settings['direction'] ) && 'vertical' === $settings['direction'] ) ? 'vertical' : 'horizontal';
+        $hover = ( isset( $settings['hover'] ) && 'true' === $settings['hover'] ) ? 'true' : 'false';
+        $before = isset( $settings['before'] ) ? sanitize_text_field( $settings['before'] ) : '';
+        $after = isset( $settings['after'] ) ? sanitize_text_field( $settings['after'] ) : '';
+
+        echo do_shortcode( sprintf(
+            '[twenty20 img1="%d" img2="%d" direction="%s" offset="%s" before="%s" after="%s" hover="%s"]',
+            $img1_id,
+            $img2_id,
+            esc_attr( $direction ),
+            esc_attr( (string) $offset ),
+            esc_attr( $before ),
+            esc_attr( $after ),
+            esc_attr( $hover )
+        ) );
     }
 
     protected function _content_template() {
@@ -175,7 +186,7 @@ class Elementor_Twenty20_Widget extends \Elementor\Widget_Base {
     #>
 
     <div id="{{ t20ID }}" class="twenty20">
-        <div class="{{ containerClass }}" {{ orientationAttr }}>
+        <div class="{{ containerClass }}" {{ orientationAttr }} data-offset="{{ offset }}" data-hover="{{ hover }}" data-before="{{ beforeText }}" data-after="{{ afterText }}">
             <img src="{{ img1Url }}" alt="Before Image" />
             <img src="{{ img2Url }}" alt="After Image" />
         </div>
@@ -231,24 +242,20 @@ class Elementor_Twenty20_Widget extends \Elementor\Widget_Base {
 
     <script>
         jQuery(document).ready(function($) {
+            // Editor preview only: read sanitized values from data attributes, never interpolate raw text into JS.
             var $container = $('#{{ t20ID }} .twentytwenty-container');
-
-            $container.twentytwenty({
-                default_offset_pct: {{ offset }},
-                orientation: '{{ direction }}'
-            });
-
-            <# if(beforeText) { #>
-                $container.find('.twentytwenty-before-label').text('{{ beforeText }}');
-            <# } else { #>
-                $container.find('.twentytwenty-before-label').hide();
-            <# } #>
-
-            <# if(afterText) { #>
-                $container.find('.twentytwenty-after-label').text('{{ afterText }}');
-            <# } else { #>
-                $container.find('.twentytwenty-after-label').hide();
-            <# } #>
+            if (!$container.length) return;
+            var offset = parseFloat($container.attr('data-offset'));
+            if (isNaN(offset) || offset < 0.1 || offset > 1) { offset = 0.5; }
+            var cfg = { default_offset_pct: offset };
+            if ($container.attr('data-orientation') === 'vertical') { cfg.orientation = 'vertical'; }
+            if ($container.attr('data-hover') === 'hover') { cfg.move_slider_on_hover = true; }
+            try { $container.twentytwenty(cfg); } catch(e) {}
+            // Labels are already rendered escaped in HTML above; just toggle visibility.
+            var before = $container.attr('data-before') || '';
+            var after = $container.attr('data-after') || '';
+            if (!before) { $container.find('.twentytwenty-before-label').hide(); }
+            if (!after) { $container.find('.twentytwenty-after-label').hide(); }
         });
     </script>
     <?php

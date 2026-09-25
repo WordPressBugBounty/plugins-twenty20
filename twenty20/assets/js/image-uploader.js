@@ -1,5 +1,14 @@
 jQuery(function($) {
     var frame;
+
+    // Resolve the preview placeholder without fataling when localization is missing.
+    function t20Placeholder($parent) {
+        if (typeof twenty20_widget !== 'undefined' && twenty20_widget && twenty20_widget.placeholder_url) {
+            return twenty20_widget.placeholder_url;
+        }
+        var fromForm = $parent && $parent.data ? $parent.data('placeholder') : '';
+        return fromForm ? fromForm : '';
+    }
     
     // Handle click on "Select image" button
     jQuery('body').on('click', '.mac-upload_image_button', function(e) {
@@ -24,14 +33,18 @@ jQuery(function($) {
         // When an image is selected in the media frame...
         frame.on('select', function() {
             var attachment = frame.state().get('selection').first().toJSON();
+            var url = attachment && attachment.url ? attachment.url : '';
+            if (!url) {
+                return;
+            }
             
             // Update the field and preview
             if (isBeforeImage) {
-                $parent.find('.mac-img-before').val(attachment.url);
-                $parent.find('.mac-img-before').closest('p').find('img').attr('src', attachment.url);
+                $parent.find('.mac-img-before').val(url);
+                $parent.find('.mac-img-before').closest('p').find('img').attr('src', url);
             } else {
-                $parent.find('.mac-img-after').val(attachment.url);
-                $parent.find('.mac-img-after').closest('p').find('img').attr('src', attachment.url);
+                $parent.find('.mac-img-after').val(url);
+                $parent.find('.mac-img-after').closest('p').find('img').attr('src', url);
             }
         });
         
@@ -43,13 +56,19 @@ jQuery(function($) {
         e.preventDefault();
         var $parent = $(this).closest('.mac_options_form');
         $parent.find('.mac-img-before').val('');
-        $parent.find('.mac-img-before').closest('p').find('img').attr('src', twenty20_widget.placeholder_url);
+        var placeholder = t20Placeholder($parent);
+        if (placeholder) {
+            $parent.find('.mac-img-before').closest('p').find('img').attr('src', placeholder);
+        }
     });
     
     jQuery('body').on('click', '.mac-remove-image-after', function(e) {
         e.preventDefault();
         var $parent = $(this).closest('.mac_options_form');
         $parent.find('.mac-img-after').val('');
-        $parent.find('.mac-img-after').closest('p').find('img').attr('src', twenty20_widget.placeholder_url);
+        var placeholder = t20Placeholder($parent);
+        if (placeholder) {
+            $parent.find('.mac-img-after').closest('p').find('img').attr('src', placeholder);
+        }
     });
 });

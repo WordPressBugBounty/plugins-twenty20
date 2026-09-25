@@ -34,9 +34,14 @@ function twenty20_zb_enqueue_script() {
 
   if ( class_exists( 'Elementor\Plugin' ) ) {
     // Ensure the scripts and styles load in Elementor editor as well
-    if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
-      wp_enqueue_style( 'twenty20-elementor-style' );
-      wp_enqueue_script( 'twenty20-elementor-script' );
+    if ( method_exists( '\Elementor\Plugin', 'instance' ) ) {
+      $elementor = \Elementor\Plugin::instance();
+      if ( isset( $elementor->editor ) && method_exists( $elementor->editor, 'is_edit_mode' ) && $elementor->editor->is_edit_mode() ) {
+        wp_register_style( 'twenty20-elementor-style', ZB_T20_URL . '/assets/css/twenty20.css', array(), ZB_T20_VER );
+        wp_register_script( 'twenty20-elementor-script', ZB_T20_URL . '/assets/js/jquery.twenty20.js', array( 'jquery' ), ZB_T20_VER, true );
+        wp_enqueue_style( 'twenty20-elementor-style' );
+        wp_enqueue_script( 'twenty20-elementor-script' );
+      }
     }
   }
 
@@ -50,7 +55,10 @@ function twenty20_zb_include_media_button_js_file() {
 add_action('wp_enqueue_media', 'twenty20_zb_include_media_button_js_file');
 
 function add_twenty20_shortcode_button() {
- echo '<a href="#" id="insert-t20-media" class="button"><span class="wp-media-buttons-icon dashicons dashicons-image-flip-horizontal"></span> Add Twenty20</a>';
+  if ( ! current_user_can( 'edit_posts' ) ) {
+    return;
+  }
+  echo '<a href="#" id="insert-t20-media" class="button"><span class="wp-media-buttons-icon dashicons dashicons-image-flip-horizontal"></span> Add Twenty20</a>';
 
 echo '<a href="#TB_inline?width=700&height=550&inlineId=twenty20-help" class="thickbox button">Help T20</a>';
  //echo '<a href="#" class="button">Help T20</a>';
@@ -59,6 +67,9 @@ echo '<a href="#TB_inline?width=700&height=550&inlineId=twenty20-help" class="th
 add_action('media_buttons', 'add_twenty20_shortcode_button', 15);
 
 function twenty20_popup_on_select(){
+  if ( ! current_user_can( 'edit_posts' ) ) {
+    return;
+  }
 ?>
 <div id="twenty20_select" style="display:none;">
   <div class="wrap">
@@ -139,6 +150,9 @@ function twenty20_popup_on_select(){
 add_action('admin_footer','twenty20_popup_on_select');
 
 function twenty20_help_popup(){
+  if ( ! current_user_can( 'edit_posts' ) ) {
+    return;
+  }
 ?>
 <div id="twenty20-help" style="display:none;">
   <style type="text/css" media="screen">
