@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "twenty20/before-after",
+  "title": "Twenty20 Before-After",
+  "category": "media",
+  "icon": "image-flip-horizontal",
+  "description": "Interactive before/after image comparison slider with touch support.",
+  "keywords": ["before", "after", "comparison", "slider", "twenty20"],
+  "textdomain": "zb_twenty20",
+  "attributes": {
+    "img1": { "type": "number", "default": 0 },
+    "img2": { "type": "number", "default": 0 },
+    "before": { "type": "string", "default": "" },
+    "after": { "type": "string", "default": "" },
+    "offset": { "type": "number", "default": 0.5 },
+    "direction": { "type": "string", "default": "horizontal" },
+    "align": { "type": "string", "default": "" },
+    "width": { "type": "string", "default": "" },
+    "hover": { "type": "string", "default": "false" }
+  },
+  "supports": {
+    "html": false,
+    "multiple": true
+  },
+  "editorScript": "twenty20-block-editor",
+  "editorStyle": "twenty20-block-editor-style"
+}

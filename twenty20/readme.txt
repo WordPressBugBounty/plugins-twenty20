@@ -1,11 +1,11 @@
 === Twenty20 Image Before-After ===
 Contributors: zayedbaloch, hammal
 Donate link: https://www.paypal.me/zayedbaloch
-Tags: before after slider, image comparison, elementor, visual composer, image slider
+Tags: before after slider, elementor, UX Builder, WP Bakery, WordPress Blocks
 Requires at least: 5.9
 Tested up to: 7.1
 Requires PHP: 5.6
-Stable tag: 2.0.6
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,11 +43,13 @@ Check the [Live Demo](https://zayedbaloch.com/twenty20-image-before-after-wordpr
 * Touch-enabled for mobile devices
 * Multiple sliders per page
 * Widget support for sidebars
+* Native Gutenberg block with live preview and sidebar settings
 * SEO-friendly with proper alt tag support
 * Accessibility compliant image comparisons
 
 = Page Builder Support =
 
+* Block Editor (Gutenberg) — native Twenty20 Before-After block with live preview
 * Elementor
 * WPBakery Page Builder (Visual Composer)
 * Flatsome UX Builder
@@ -67,7 +69,7 @@ Check the [Live Demo](https://zayedbaloch.com/twenty20-image-before-after-wordpr
 
 1. Upload the `twenty20` folder to your `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Use the shortcode `[twenty20]` in your posts/pages or use the widget
+3. Add the "Twenty20 Before-After" block in the block editor, use the shortcode `[twenty20]` in your posts/pages, or use the widget
 
 = Quick Start Guide =
 
@@ -118,6 +120,9 @@ Twenty20 works by stacking two images on top of each other. As the slider moves 
 = How to add before-after slider? =
 Check the demo [Video](https://www.youtube.com/watch?v=1cQ9rhL-t70 "YouTube") demo.
 
+= How do I add a slider with the block editor? =
+Add the "Twenty20 Before-After" block, pick the before and after images, then tune the starting position, direction, labels, alignment, width, and mouse-hover behavior in the block sidebar. The canvas shows a live preview that updates as you change settings — click the preview to jump back to the block settings, or use the Preview/Edit toggle in the block toolbar. The block uses the same secure renderer as the shortcode.
+
 = How do I add a widget? =
 Watch the [video demo](https://www.youtube.com/watch?v=1cQ9rhL-t70 "YouTube") on YouTube.
 
@@ -137,8 +142,14 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 9. WP Bakery Visual Composer settings.
 10. Elementor element.
 11. UX Builder element.
+12. Gutenberg block with live preview and sidebar settings.
 
 == Changelog ==
+
+= 2.1.0 =
+* New: native Gutenberg block ("Twenty20 Before-After") with image pickers, live preview, and sidebar settings for position, direction, labels, alignment, width, and mouse hover — no build step required
+* Improved: block UX — sidebar Images panel, click-preview-to-open settings, toolbar Preview/Edit toggle, and live-updating preview
+* Improved: block rendering reuses the hardened shortcode renderer, so all 2.0.6 XSS protections apply automatically
 
 = 2.0.6 =
 * Security: fix CVE-2022-4580 Contributor+ Stored XSS — validate/sanitize shortcode attributes (offset clamped float, whitelisted direction/align/hover, absint image IDs, text-only before/after via .text() and data attributes, no user input in inline JS)
@@ -255,6 +266,9 @@ Yes, the Twenty20 plugin allows users to add unlimited before-after sliders.
 * First Release
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+* New Gutenberg block added. No shortcode changes required — update and use the "Twenty20 Before-After" block in the editor.
 
 = 2.0.6 =
 * Security fix for CVE-2022-4580 (Stored XSS). Please update. No shortcode changes required.

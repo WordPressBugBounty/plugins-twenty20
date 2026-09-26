@@ -1,0 +1,73 @@
+/* Twenty20 Before-After — block editor styles */
+.twenty20-block-images {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.twenty20-block-image {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 1px dashed #c3c4c7;
+  background: #fff;
+  padding: 10px;
+}
+.twenty20-block-tag {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.twenty20-block-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 8px;
+}
+.twenty20-block-empty {
+  border: 1px dashed #c3c4c7;
+  background: #f6f7f7;
+  color: #757575;
+  text-align: center;
+  padding: 24px 8px;
+  margin-bottom: 8px;
+}
+.twenty20-block-pick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.twenty20-block-preview .twenty20 {
+  max-width: 100%;
+}
+/* Keep the server-rendered preview inside the editor canvas tidy. */
+.twenty20-block-preview .twentytwenty-container img {
+  max-width: 100%;
+}
+/*
+ * Before the slider initializes, the two images would stack vertically.
+ * Hide the second one until ready — safe because twentytwenty only measures
+ * the first image at init, and our JS adds .is-t20-ready right after init.
+ */
+.twenty20-block-preview .twentytwenty-container:not(.is-t20-ready) img + img {
+  display: none;
+}
+/* Sidebar image pickers */
+.twenty20-block-side-image {
+  margin-bottom: 16px;
+}
+.twenty20-block-side-image:last-child {
+  margin-bottom: 4px;
+}
+/* Preview wrapper + edit affordance */
+.twenty20-block-preview-wrap {
+  position: relative;
+  cursor: pointer;
+}
+.twenty20-block-edit-overlay {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 20;
+}
+.twenty20-block-editing .twenty20-block-done {
+  margin-top: 12px;
+}
